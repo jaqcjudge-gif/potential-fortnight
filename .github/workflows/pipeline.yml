@@ -70,7 +70,7 @@ jobs:
           scan-type: fs
           severity: HIGH,CRITICAL
 
-  # 4. JEKYLL BUILD (DOCKER, NO GEMFILE)
+  # 4. JEKYLL BUILD (DOCKER)
   jekyll_build:
     name: Build Jekyll Site (Docker)
     needs: trivy
@@ -93,8 +93,8 @@ jobs:
           name: site
           path: _site
 
-  # 5. DEPLOY TO MAIN BRANCH
-   deploy:
+  # 5. DEPLOY TO GH-PAGES BRANCH
+  deploy:
     name: Deploy to GitHub Pages (main → gh-pages)
     needs: jekyll_build
     runs-on: ubuntu-latest
@@ -110,7 +110,7 @@ jobs:
         with:
           name: site
           path: _site
-  
+
       - name: Deploy to gh-pages branch
         run: |
           cd _site
