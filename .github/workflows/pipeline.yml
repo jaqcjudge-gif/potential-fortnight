@@ -72,24 +72,29 @@ jobs:
 
   # 4. JEKYLL BUILD (DOCKER)
   jekyll_build:
-    name: Build Jekyll Site (Docker)
+    name: Build Jekyll Site (Native Ruby)
     needs: trivy
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+  
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
 
-      - name: Build the site in the jekyll/builder container
+      - name: Install Jekyll
         run: |
-          docker run --rm\
-            -e JEKYLL_NO_CACHE=true \
-            -e JEKYLL_CACHE_DIR=/tmp/jekyll-cache \
-            -v $PWD:/srv/jekyll \
-            jekyll/builder:latest \
-            jekyll build --future
+          gem install bundler jekyll
 
-      - name: Upload built site as artifact
+      - name: Build site
+        run: |
+          jekyll build --future
+
+      - name: Upload built site
         uses: actions/upload-artifact@v4
         with:
           name: site
