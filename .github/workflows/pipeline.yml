@@ -83,6 +83,8 @@ jobs:
       - name: Build the site in the jekyll/builder container
         run: |
           docker run --rm\
+            -e JEKYLL_NO_CACHE=true \
+            -e JEKYLL_CACHE_DIR=/tmp/jekyll-cache \
             -v $PWD:/srv/jekyll \
             jekyll/builder:latest \
             jekyll build --future
