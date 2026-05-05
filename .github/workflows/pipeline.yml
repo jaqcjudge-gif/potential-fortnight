@@ -79,20 +79,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-  
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
           bundler-cache: true
 
-      - name: Install Jekyll
+      - name: Install dependencies from Gemfile
         run: |
-          gem install bundler jekyll
+          bundle install
 
-      - name: Build site
+      - name: Build site with Jekyll
         run: |
-          jekyll build --future
+          bundle exec jekyll build --future
 
       - name: Upload built site
         uses: actions/upload-artifact@v4
