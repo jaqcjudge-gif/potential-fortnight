@@ -1,5 +1,14 @@
-title: My DevOps Blog
-description: Built as part of a Level 5 DevOps learning guide.
+title: "My DevOps Blog"
+description: "Built as part of a Level 5 DevOps learning guide."
+
+# Required for GitHub Pages
+url: "https://jaqjudge-gif.github.io"
+baseurl: "/potential-fortnight"
+
 theme: minima
-exclude: 
+
+# Required because your posts are dated in the future
+future: true
+
+exclude:
   - README.md
