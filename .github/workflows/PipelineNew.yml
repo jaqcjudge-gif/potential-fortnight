@@ -49,7 +49,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ "actions"]
+        language: ["actions"]
 
     steps:
       - name: Checkout repository
