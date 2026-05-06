@@ -91,6 +91,7 @@ jobs:
           bundle install
 
       - name: Build site with Jekyll
+        working-directory: ${{ github.workspace }}/potential-fortnight
         run: |
           bundle exec jekyll build --future
 
